@@ -1,7 +1,8 @@
 # Serverless example to process all results from S3 data fetched in Athena Query using Step Functions. 
 
-![Concept](./sf-athena-glue.png)
+![Diagram](./Screenshot 2025-02-15 175807.png)
 ![Workflow](./state_machine.png)
+![Concept](./sf-athena-glue.png)
 
 This serverless pattern uses AWS Athena allows to analyze data in Amazon S3 using standard SQL. A Glue crawler creates a database table from the S3 data which is queried by Athena. Step Function can be leveraged to query as well as process each result in this data received from Athena with the help of **NextToken**.
 
@@ -34,6 +35,8 @@ Important: this application uses various AWS services and there are costs associ
     ```
     sam deploy --guided
     ```
+![Despliegue](./Screenshot 2025-02-15 181540.png)
+
 1. During the prompts:
     * Enter a stack name
     * Enter the desired AWS Region
@@ -44,9 +47,9 @@ Once you have run sam deploy -guided mode once and saved arguments to a configur
 
 ## Testing
 
-1. Go to the S3Bucket named "*agawcrawler*" and upload the sample data csv file provided.
+1. Go to the S3Bucket and upload the sample data csv file provided.
 
-1. Go to the Glue Crawler console page and run the newly created Crawler "*testcrawler*". This will scan the S3 bucket data and automatically create tables out it.
+1. Go to the Glue Crawler console page and run the newly created Crawler. This will scan the S3 bucket data and automatically create tables out it.
 
 1. Use the following dummy JSON payload to run your Step function execution:
     ```JSON
@@ -65,7 +68,3 @@ Once you have run sam deploy -guided mode once and saved arguments to a configur
     sam delete
     ```
 
-----
-Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
-SPDX-License-Identifier: MIT-0
