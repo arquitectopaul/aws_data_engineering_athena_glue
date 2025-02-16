@@ -54,6 +54,8 @@ Once you have run sam deploy -guided mode once and saved arguments to a configur
 
 ![Configuración](./Screenshot_2025-02-15_180154.png)
 
+![Glue](./Screenshot_2025-02-15_181830.png)
+
 1. Use the following dummy JSON payload to run your Step function execution:
     ```JSON
     {
@@ -64,7 +66,6 @@ Once you have run sam deploy -guided mode once and saved arguments to a configur
     ```
 2. Observe the logs of the step function execution to verify if all the results fetched by the Athena query is processed or not.
 
-![Glue](./Screenshot_2025-02-15_181830.png)
 ![Athena](./Screenshot_2025-02-15_181423.png)
 
 ## Cleanup
