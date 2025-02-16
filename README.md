@@ -1,6 +1,6 @@
 # Serverless example to process all results from S3 data fetched in Athena Query using Step Functions. 
 
-![Diagram](./Screenshot 2025-02-15 175807.png)
+![Diagram](./Screenshot_2025-02-15_175807.png)
 ![Workflow](./state_machine.png)
 ![Concept](./sf-athena-glue.png)
 
@@ -35,7 +35,7 @@ Important: this application uses various AWS services and there are costs associ
     ```
     sam deploy --guided
     ```
-![Despliegue](./Screenshot 2025-02-15 181540.png)
+![Despliegue](./Screenshot_2025-02-15_181540.png)
 
 1. During the prompts:
     * Enter a stack name
