@@ -1,0 +1,19 @@
+VARIABLE,TIPO_DATO,DESCRIPCION
+RUC,Numérico,Número del RUC del proveedor
+RAZON_SOCIAL,Carácter,Razón social del proveedor
+REMYPE_DEPARTAMENTO,Carácter,Departamento de ubicación del proveedor según REMYPE
+REMYPE_PROVINCIA,Carácter,Provincia de ubicación del proveedor según REMYPE
+REMYPE_DISTRITO,Carácter,Distrito de ubicación del proveedor según REMYPE
+DOMICILIO_FISCAL,Carácter,Domicilio fiscal del proveedor según REMYPE
+APP_INFORMATICO_DEMANDAS,Carácter,Registro perteneciente al aplicativo informatico “Demandas Judiciales y Arbitrales en contra del Estado”
+SIAF,Carácter,Registro perteneciente al ""Sistema Integrado de Administración Financiera (SIAF)"
+ESTADO_DEUDA,Carácter,Estado de la deuda
+TIPO_DOCUMENTO,Carácter,Tipo de documento de devengado SIAF o sentencia judical
+DOC_DEVEN_O_SENTEN_JUDI,Carácter,Número de documento de devengado SIAF o sentencia judical
+MONTO_DEUDA,Numérico,Monto de la deuda
+DESC_NIVEL_GOBIERNO,Carácter,Nivel de gobierno
+DESC_SECTOR,Carácter,Nombre del Sector
+DESC_PLIEGO,Carácter,Nombre del pliego
+SEC_EJEC,Numérico,Código SIAF de la unidad ejecutora
+DESC_EJECUTORA,Carácter,Nombre de la unidad ejecutora
+OBSERVACION_GLOSA,Numérico,Número de expediente judicial o observación de la glosa SIAF
