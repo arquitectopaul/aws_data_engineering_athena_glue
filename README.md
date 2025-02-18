@@ -35,7 +35,7 @@ Importante: esta aplicación utiliza varios servicios de AWS y hay costos asocia
     ```
 ![Despliegue](./Screenshot_2025-02-15_181540.png)
 
-1. During the prompts:
+1. Durante las indicaciones:
     * Ingrese un nombre para su nuevo stack 
     * Ingrese la Region AWS
     * Permitir SAM CLI crear los roles IAM con los permisos necesarios.
