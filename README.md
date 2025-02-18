@@ -4,73 +4,62 @@
 ![Workflow](./state_machine.png)
 ![Concept](./sf-athena-glue.png)
 
-This serverless pattern uses AWS Athena allows to analyze data in Amazon S3 using standard SQL. A Glue crawler creates a database table from the S3 data which is queried by Athena. Step Function can be leveraged to query as well as process each result in this data received from Athena with the help of **NextToken**.
+Este patrón serverless utiliza AWS Athena y permite analizar datos en Amazon S3 mediante SQL estándar. Un Glue crawler crea una tabla de base de datos a partir de los datos de S3 que es consultada por Athena.
 
-Athena is out-of-the-box integrated with AWS Glue Data Catalog, allowing you to create a unified metadata repository across various services, crawl data sources to discover schemas and populate your Catalog with new and modified table and partition definitions, and maintain schema versioning. It is easy to use. Simply point to your data in Amazon S3, define the schema, and start querying using standard SQL. Most results are delivered within seconds.
+Athena se integra de forma inmediata con AWS Glue Data Catalog, lo que le permite crear un repositorio de metadatos unificado en varios servicios, rastrear orígenes de datos para detectar esquemas y rellenar su Catalog con definiciones de tablas y particiones nuevas y modificadas, y mantener el control de versiones del esquema. Para usarlo simplemente se tiene que apuntar a su data S3, definir el esquema y comenzar a realizar consultas mediante SQL estándar. La mayoría de los resultados se entregan en cuestión de segundos.
 
-This application pattern can be used to query, analyze and procees any type of data stored in S3. For example, the data can be a list of movie results, cloudtrail logs, vpc logs, inventory list etc.
+## Casos de uso
+Este patrón de aplicación se puede utilizar para consultar, analizar y procesar cualquier tipo de datos almacenados en S3. Por ejemplo, los datos pueden ser una lista de resultados de películas, registros de cloudtrail, registros de vpc, lista de inventario, etc.
 
-Learn more about this pattern at Serverless Land Patterns: https://serverlessland.com/patterns/sf-athena-glue-sam
+## Costos
+Importante: esta aplicación utiliza varios servicios de AWS y hay costos asociados con estos servicios después del uso de la capa gratuita - se puede consultar [AWS Pricing page](https://aws.amazon.com/pricing/) para conocer los costos con mayor detalle. Usted es responsable de los costos de AWS en los que se incurra. No hay ninguna garantía implícita en este ejemplo.
 
-Important: this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example.
+## Requisitos
 
-## Requirements
-
-* [Create an AWS account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html) if you do not already have, create them and log in. The IAM user that you use must have sufficient permissions to make necessary AWS service calls and manage AWS resources.
-* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) installed and configured
+* [Create an AWS account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html) Si aún no lo tiene, créelos e inicie sesión. El usuario de IAM que utilice debe tener permisos suficientes para realizar las llamadas de servicio de AWS necesarias y administrar los recursos de AWS.
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) debe estar instalado y configurado
 * [Git Installed](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-* [AWS Serverless Application Model](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) (AWS SAM) installed
+* [AWS Serverless Application Model](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) (AWS SAM) instalado
+* [Python Installed].
+* [AWS RedShift Serverless]. debe estar instalado y configurado 
 
-## Deployment Instructions
+## Instructiones del despliegue
 
-1. Create a new directory, navigate to that directory in a terminal and clone the GitHub repository:
+1. Crear un nuevo directorio, navegar a este directorio en un terminal y clonar el repositorio GitHub:
     ``` 
-    git clone https://github.com/aws-samples/serverless-pattern
+    git clone https://github.com/arquitectopaul/aws_data_engineering_athena_glue.git
     ```
-1. Change directory to the pattern directory:
-    ```
-    cd sf-athena-glue-sam
-    ```
-1. From the command line, use AWS SAM to deploy the AWS resources for the pattern as specified in the template.yml file:
+1. Desde la línea de comandos, utilizar AWS SAM para desplegar los recursos especificados en el archivo template.yml :
     ```
     sam deploy --guided
     ```
 ![Despliegue](./Screenshot_2025-02-15_181540.png)
 
 1. During the prompts:
-    * Enter a stack name
-    * Enter the desired AWS Region
-    * Allow SAM CLI to create IAM roles with the required permissions.
+    * Ingrese un nombre para su nuevo stack 
+    * Ingrese la Region AWS
+    * Permitir SAM CLI crear los roles IAM con los permisos necesarios.
 
-Once you have run sam deploy -guided mode once and saved arguments to a configuration file (samconfig.toml), you can use sam deploy in future to use these defaults.
-
+Una vez que haya ejecutado sam deploy -guided mode una vez y haya guardado los argumentos en un archivo de configuración (samconfig.toml), puede usar sam deploy en el futuro para usar estos valores predeterminados.
 
 ## Testing
 
-1. Go to the S3Bucket and upload the sample data csv file provided.
+1. Ir al bucket S3 y cargar la data csv. En ese caso hemos cargado cualquier data encontrada en https://datosabiertos.gob.pe/
 ![S3](./Screenshot_2025-02-15_181247.png)
 
-1. Go to the Glue Crawler console page and run the newly created Crawler. This will scan the S3 bucket data and automatically create tables out it.
+1. Ir a la consola AWS Glue Crawler y correr el reciente Crawler creado. Esto escaneará la data del bucket S3 bucket data y automáticamente creará las tablas.
 
 ![Configuración](./Screenshot_2025-02-15_180154.png)
 
 ![Glue](./Screenshot_2025-02-15_181830.png)
 
-1. Use the following dummy JSON payload to run your Step function execution:
-    ```JSON
-    {
-        "key1": "value1",
-        "key2": "value2",
-        "key3": "value3"
-    }
-    ```
-2. Observe the logs of the step function execution to verify if all the results fetched by the Athena query is processed or not.
+2. Observar los logs de la ejecución del step function execution para verificar si todos los resultados fueron procesados.
 
 ![Athena](./Screenshot_2025-02-15_181423.png)
 
 ## Cleanup
 
- 1. For deleting the stack you can use sam delete from SAM CLI -
+ 1. Para eliminar el stack ingresar desde SAM CLI -
     ```
     sam delete
     ```
