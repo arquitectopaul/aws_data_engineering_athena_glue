@@ -1,4 +1,4 @@
-# Serverless example to process all results from S3 data fetched in Athena Query using Step Functions. 
+# Serverless que procesa data S3 data con Athena. 
 
 ![Diagram](./Screenshot_2025-02-15_175807.png)
 ![Workflow](./state_machine.png)
